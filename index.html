@@ -1,0 +1,97 @@
+<html>
+<head>
+    <title>A-Frame Workshop Example 21</title>
+
+    <!-- Origin Trial Token, feature = WebVR (For Chrome M59+), origin = https://hazardu5.github.io, expires = 2017-06-28 -->
+    <meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M59+)" data-expires="2017-06-28" content="Ahx8Ww177dEDI39gZofw2EAg/ttuVUVwU+gMcmz+MsWVPhOpswY8beyZkJ683y01KLEgejjSP4aAPf1SR+L5UwcAAABUeyJvcmlnaW4iOiJodHRwczovL2hhemFyZHU1LmdpdGh1Yi5pbzo0NDMiLCJmZWF0dXJlIjoiV2ViVlIxLjEiLCJleHBpcnkiOjE0OTg3MDA2MjV9">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="https://rawgit.com/aframevr/aframe/f8db22286dc6fb4f8fdc467e5d475f8902e4567d/dist/aframe-master.min.js"></script>
+    <script src="https://unpkg.com/aframe-teleport-controls@0.2.x/dist/aframe-teleport-controls.min.js"></script>
+    <script src="https://rawgit.com/donmccurdy/aframe-extras/v3.8.1/dist/aframe-extras.min.js"></script>
+    <script src="https://rawgit.com/IdeaSpaceVR/aframe-particle-system-component/master/dist/aframe-particle-system-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-gradient-sky@1.0.4/dist/gradientsky.min.js"></script>
+    <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.min.js"></script>
+    <script src="https://rawgit.com/protyze/aframe-curve-component/master/dist/aframe-curve-component.min.js"></script>
+    <script src="https://rawgit.com/protyze/aframe-alongpath-component/master/dist/aframe-alongpath-component.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/kframe/master/components/look-at/dist/aframe-look-at-component.js"></script>
+    <script src="https://rawgit.com/donmccurdy/aframe-physics-system/v1.4.0/dist/aframe-physics-system.min.js"></script>
+
+    <script src="assets/js/lib/three/examples/loaders/collada/Animation.js"></script>
+    <script src="assets/js/lib/three/examples/loaders/collada/AnimationHandler.js"></script>
+    <script src="assets/js/lib/three/examples/loaders/collada/KeyFrameAnimation.js"></script>
+
+    <script src="assets/js/components/collada-animation-mixer.js"></script>
+
+    <script src="assets/js/components/follow.js"></script>
+    <script src="assets/js/components/auto-scale.js"></script>
+    <script src="assets/js/main.js"></script>
+</head>
+
+<body>
+<a-scene main>
+    <a-assets>
+        <audio id="teleport-sound" src="assets/ogg/220202__gameaudio__teleport-casual.ogg"></audio>
+    </a-assets>
+
+
+    <!------------------------------ YOUR CUSTOM ENTITIES GO ABOVE ------------------------------>
+
+    <a-box id="physics-floor" static-body scale="25 0.5 25" position="0 0.6 0" material="color: #ffcc66; metalness: 0; roughness: 0.780"></a-box>
+
+    <a-entity id="sky" geometry="primitive: sphere; radius: 5000" material="shader: gradient; topColor: 255 255 255; bottomColor: 255 204 102;" scale="-1 1 1"></a-entity>
+
+    <a-light id="pointLight" light="type: point; color: #fff; intensity: 0.690;" position="-21.906 10.450 0"></a-light>
+    <a-light id="ambientLight" light="type:ambient; color: #fff; intensity: 0.3;"></a-light>
+
+    <!-- Checkpoints -->
+    <a-entity position="0 1 0">
+        <a-entity id="checkpoint1" look-at="#camera" checkpoint="offset: 0 1.6 0" position="-5.990244099867345 0 -9.661835401782431" auto-scale="target: #camera; size: 1; static: false">
+            <a-cylinder class="checkpoint" rotation="-90 0 0" radius="0.05" height="0" color="#ff0000" material="shader: flat" position="0 0.1 0"></a-cylinder>
+            <a-plane class="checkpoint" color="#ff0000" height="0.2" width="0.01" rotation="0 0 0" material="shader: flat"></a-plane>
+        </a-entity>
+        <a-entity id="checkpoint2" look-at="#camera" checkpoint="offset: 0 1.6 0" rotation="-90 0 0" position="7.527520977598818 0 -7.768530129491557" auto-scale="target: #camera; size: 1; static: false">
+            <a-cylinder class="checkpoint" rotation="-90 0 0" radius="0.05" height="0" color="#ff0000" material="shader: flat" position="0 0.1 0"></a-cylinder>
+            <a-plane class="checkpoint" color="#ff0000" height="0.2" width="0.01" rotation="0 0 0" material="shader: flat"></a-plane>
+        </a-entity>
+        <a-entity id="checkpoint3" look-at="#camera" checkpoint="offset: 0 1.6 0" rotation="-90 0 0" position="8.719833634106338 0 10.106291804924217" auto-scale="target: #camera; size: 1; static: false">
+            <a-cylinder class="checkpoint" rotation="-90 0 0" radius="0.05" height="0" color="#ff0000" material="shader: flat" position="0 0.1 0"></a-cylinder>
+            <a-plane class="checkpoint" color="#ff0000" height="0.2" width="0.01" rotation="0 0 0" material="shader: flat"></a-plane>
+        </a-entity>
+        <a-entity id="checkpoint5" look-at="#camera" checkpoint="offset: 0 1.6 0" rotation="-90 0 0" position="0 0 0" auto-scale="target: #camera; size: 1; static: false">
+            <a-cylinder class="checkpoint" rotation="-90 0 0" radius="0.05" height="0" color="#ff0000" material="shader: flat" position="0 0.1 0"></a-cylinder>
+            <a-plane class="checkpoint" color="#ff0000" height="0.2" width="0.01" rotation="0 0 0" material="shader: flat"></a-plane>
+        </a-entity>
+    </a-entity>
+
+    <!-- Camera. -->
+    <a-entity id="camera" camera="userHeight: 1.6"
+
+              universal-controls="movementControls: checkpoint, keyboard"
+              checkpoint-controls="mode: teleport"
+              kinematic-body
+              jump-ability
+            >
+
+        <a-entity id="cursor" cursor="fuse: true; fuseTimeout: 500"
+                  position="0 0 -1"
+                  geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03;"
+                  material="color: black; shader: flat"
+                  raycaster="objects: .checkpoint, #environment">
+            <a-animation begin="click" attribute="material.color" from="red" to="black" dur="0" dur="250"></a-animation>
+            <a-animation begin="click" attribute="scale" from="0.7 0.7 0.7" to="1 1 1" dur="0" dur="250"></a-animation>
+            <a-animation begin="mouseleave" attribute="scale" from="0.7 0.7 0.7" to="1 1 1" dur="0" dur="250"></a-animation>
+            <a-animation begin="cursor-fusing" attribute="material.color" from="black" to="red" dur="2000"></a-animation>
+            <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
+                         fill="forwards" from="1 1 1" to="0.7 0.7 0.7" dur="250"></a-animation>
+            <a-animation begin="mouseleave" easing="ease-in" attribute="scale"
+                         fill="forwards" from="0.7 0.7 0.7" to="1 1 1" dur="250"></a-animation>
+        </a-entity>
+        <a-entity id="teleport-sound-emitter" sound="src: #teleport-sound; autoplay: false; loop: false;" position="0 0 -1"></a-entity>
+        <a-entity id="teleport-particles" position="0 0 -0.2" particle-system="blending: 1; texture: assets/img/particles/swirl_white.png; preset: default; type: 1; particleCount: 30; color: #ff0000; randomize: true; opacity: 1; velocityValue: 0 5 0; size: 0.2"></a-entity>
+    </a-entity>
+
+</a-scene>
+</body>
+</html>

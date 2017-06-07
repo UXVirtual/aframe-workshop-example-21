@@ -1,0 +1,24 @@
+{
+  "name": "aframe-workshop-example-21",
+  "description": "Demo scene in A-Frame showcasing various models, sound and animation",
+  "version": "0.3.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "start": "budo --live --verbose --port 3000 --open",
+    "deploy": "ghpages",
+    "ghpages": "ghpages"
+  },
+  "devDependencies": {
+    "budo": "^7.0.0",
+    "ghpages": "0.0.3"
+  },
+  "keywords": [
+    "aframe",
+    "aframe-example",
+    "aframe-boilerplate",
+    "aframe-scene",
+    "webvr",
+    "vr"
+  ]
+}
