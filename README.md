@@ -1,10 +1,4 @@
-# A-Frame Boilerplate
-
-Boilerplate for creating WebVR scenes with [A-Frame](https://aframe.io).
-
-Alternatively, check out the [A-Frame Starter on
-glitch.com](https://glitch.com/~aframe) for a more interactive way on getting
-started.
+# A-Frame Workshop Example 21
 
 ## Getting Started
 
